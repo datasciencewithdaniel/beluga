@@ -2,22 +2,31 @@ import numpy as np
 from typing import Iterable
 
 
+def check_length_matching(*lists: Iterable[list]) -> True or Exception:
+    for list_ in lists[1:]:
+        if len(list_) != len(lists[0]):
+            raise ValueError("Lengths of given lists aren't matching")
+    return True
+
+
 def true_positive(predictions: Iterable[int], ground_truth: Iterable[int]) -> int:
-    return sum(
-        [1 if p == 1 and g == 1 else 0 for p, g in zip(predictions, ground_truth)]
-    )  # CONVERT TO USING NUMPY ARRAY
+    check_length_matching(predictions, ground_truth)
+    return np.sum(np.array(predictions) & np.array(ground_truth))
 
 
 def true_negative(predictions: Iterable[int], ground_truth: Iterable[int]) -> int:
-    return sum([1 for p, g in zip(predictions, ground_truth) if p == 0 and g == 0])
+    check_length_matching(predictions, ground_truth)
+    return np.sum(np.invert(np.array(predictions) | np.array(ground_truth)).astype(bool))
 
 
 def false_positive(predictions: Iterable[int], ground_truth: Iterable[int]) -> int:
-    return sum([1 for p, g in zip(predictions, ground_truth) if p == 1 and g == 0])
+    check_length_matching(predictions, ground_truth)
+    return np.sum(np.array(predictions) & np.invert(np.array(ground_truth).astype(bool)))
 
 
 def false_negative(predictions: Iterable[int], ground_truth: Iterable[int]) -> int:
-    return sum([1 for p, g in zip(predictions, ground_truth) if p == 0 and g == 1])
+    check_length_matching(predictions, ground_truth)
+    return np.sum(np.invert(np.array(predictions).astype(bool)) & np.array(ground_truth))
 
 
 def precision(predictions: Iterable[int], ground_truth: Iterable[int]) -> float:
@@ -52,7 +61,7 @@ def f1(predictions: Iterable[int], ground_truth: Iterable[int]) -> float:
     return (2 * prec * rec) / (prec + rec)
 
 
-def error_check(metric_1, metric_2):
+def error_check(metric_1: int, metric_2: int) -> True or Exception:
     if metric_1 + metric_2 == 0:
         raise ZeroDivisionError("You tried to divide by zero, check your input data")
     elif metric_1 + metric_2 < 0:
