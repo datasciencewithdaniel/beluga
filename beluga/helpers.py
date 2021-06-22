@@ -1,15 +1,15 @@
 def display_helper(raw_metrics, header=''):
 
-    max_lab = max([len(lab) for lab in raw_metrics.keys()])
+    max_label_len = max([len(str(lab)) for lab in raw_metrics.keys()])
 
     if header:
         print(header)
 
-    print("=" * (max_lab + 9))
+    print("=" * (max_label_len + 9))
     for key, val in raw_metrics.items():
-        key = key.ljust(max_lab + 2, " ")
+        key = key.ljust(max_label_len + 2, " ")
         print("{0} {1:.4f}".format(key, val))
-    print("=" * (max_lab + 9))
+    print("=" * (max_label_len + 9))
 
     return True
 
