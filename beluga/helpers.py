@@ -1,6 +1,9 @@
-def display_helper(raw_metrics):
+def display_helper(raw_metrics, header=''):
 
     max_lab = max([len(lab) for lab in raw_metrics.keys()])
+
+    if header:
+        print(header)
 
     print("=" * (max_lab + 9))
     for key, val in raw_metrics.items():
