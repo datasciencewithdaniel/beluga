@@ -1,60 +1,180 @@
-import numpy as np
 from typing import Iterable
+import numpy as np
+
+from . import helpers
 
 
-def true_positive(predictions: Iterable[int], ground_truth: Iterable[int]) -> int:
-    return sum(
-        [1 if p == 1 and g == 1 else 0 for p, g in zip(predictions, ground_truth)]
-    )  # CONVERT TO USING NUMPY ARRAY
+def true_positive(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
+    helpers.array_check(predictions, ground_truth)
 
+    labels = np.unique(ground_truth)
 
-def true_negative(predictions: Iterable[int], ground_truth: Iterable[int]) -> int:
-    return sum([1 for p, g in zip(predictions, ground_truth) if p == 0 and g == 0])
+    raw_metrics = {}
 
+    for lab in labels:
 
-def false_positive(predictions: Iterable[int], ground_truth: Iterable[int]) -> int:
-    return sum([1 for p, g in zip(predictions, ground_truth) if p == 1 and g == 0])
+        pred_true = np.where(predictions == lab, 1, 0)
+        truth_true = np.where(ground_truth == lab, 1, -1)
 
+        raw_metrics[lab] = np.sum(np.where(pred_true == truth_true, 1, 0))
 
-def false_negative(predictions: Iterable[int], ground_truth: Iterable[int]) -> int:
-    return sum([1 for p, g in zip(predictions, ground_truth) if p == 0 and g == 1])
+    if raw:
+        return raw_metrics
 
-
-def precision(predictions: Iterable[int], ground_truth: Iterable[int]) -> float:
-    tp = true_positive(predictions, ground_truth)
-    fp = false_positive(predictions, ground_truth)
-    error_check(tp, fp)
-    return tp / (tp + fp)
-
-
-def recall(predictions: Iterable[int], ground_truth: Iterable[int]) -> float:
-    tp = true_positive(predictions, ground_truth)
-    fn = false_negative(predictions, ground_truth)
-    error_check(tp, fn)
-    return tp / (tp + fn)
-
-
-def sensitivity(predictions: Iterable[int], ground_truth: Iterable[int]) -> float:
-    return recall(predictions, ground_truth)
-
-
-def specificity(predictions: Iterable[int], ground_truth: Iterable[int]) -> float:
-    tn = true_negative(predictions, ground_truth)
-    fp = false_positive(predictions, ground_truth)
-    error_check(tn, fp)
-    return tn / (tn + fp)
-
-
-def f1(predictions: Iterable[int], ground_truth: Iterable[int]) -> float:
-    prec = precision(predictions, ground_truth)
-    rec = recall(predictions, ground_truth)
-    error_check(prec, rec)
-    return (2 * prec * rec) / (prec + rec)
-
-
-def error_check(metric_1, metric_2):
-    if metric_1 + metric_2 == 0:
-        raise ZeroDivisionError("You tried to divide by zero, check your input data")
-    elif metric_1 + metric_2 < 0:
-        raise ValueError("Your metric does not make sense, check your input data")
+    helpers.display_helper(raw_metrics)
     return True
+
+
+def true_negative(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
+    helpers.array_check(predictions, ground_truth)
+
+    labels = np.unique(ground_truth)
+
+    raw_metrics = {}
+
+    for lab in labels:
+
+        pred_true = np.where(predictions != lab, 1, 0)
+        truth_true = np.where(ground_truth != lab, 1, -1)
+
+        raw_metrics[lab] = np.sum(np.where(pred_true == truth_true, 1, 0))
+
+    if raw:
+        return raw_metrics
+
+    helpers.display_helper(raw_metrics)
+    return True
+
+
+def false_positive(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
+    helpers.array_check(predictions, ground_truth)
+
+    labels = np.unique(ground_truth)
+
+    raw_metrics = {}
+
+    for lab in labels:
+
+        pred_true = np.where(predictions == lab, 1, 0)
+        truth_true = np.where(ground_truth != lab, 1, -1)
+
+        raw_metrics[lab] = np.sum(np.where(pred_true == truth_true, 1, 0))
+
+    if raw:
+        return raw_metrics
+
+    helpers.display_helper(raw_metrics)
+    return True
+
+
+def false_negative(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
+    helpers.array_check(predictions, ground_truth)
+
+    labels = np.unique(ground_truth)
+
+    raw_metrics = {}
+
+    for lab in labels:
+
+        pred_true = np.where(predictions != lab, 1, 0)
+        truth_true = np.where(ground_truth == lab, 1, -1)
+
+        raw_metrics[lab] = np.sum(np.where(pred_true == truth_true, 1, 0))
+
+    if raw:
+        return raw_metrics
+
+    helpers.display_helper(raw_metrics)
+    return True
+
+
+def precision(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
+    tp = true_positive(predictions, ground_truth, raw=True)
+    fp = false_positive(predictions, ground_truth, raw=True)
+
+    raw_metrics = {}
+
+    for (tp_key, tp_val) in tp.items():
+        if tp_val == 0 and fp[tp_key] == 0:
+            raw_metrics[tp_key] = 0
+        else:
+            raw_metrics[tp_key] = tp_val / (tp_val + fp[tp_key])
+
+    if raw:
+        return raw_metrics
+
+    helpers.display_helper(raw_metrics)
+    return True
+
+
+def recall(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
+    tp = true_positive(predictions, ground_truth, raw=True)
+    fn = false_negative(predictions, ground_truth, raw=True)
+
+    raw_metrics = {}
+
+    for (tp_key, tp_val) in tp.items():
+        if tp_val == 0 and fn[tp_key] == 0:
+            raw_metrics[tp_key] = 0
+        else:
+            raw_metrics[tp_key] = tp_val / (tp_val + fn[tp_key])
+
+    if raw:
+        return raw_metrics
+
+    helpers.display_helper(raw_metrics)
+    return True
+
+
+def sensitivity(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
+    raw_metrics = recall(predictions, ground_truth, raw=True)
+
+    if raw:
+        return raw_metrics
+
+    helpers.display_helper(raw_metrics)
+    return True
+
+
+def specificity(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
+    tn = true_negative(predictions, ground_truth, raw=True)
+    fp = false_positive(predictions, ground_truth, raw=True)
+
+    raw_metrics = {}
+
+    for (tn_key, tn_val) in tn.items():
+        if tn_val == 0 and fp[tn_key] == 0:
+            raw_metrics[tn_key] = 0
+        else:
+            raw_metrics[tn_key] = tn_val / (tn_val + fp[tn_key])
+
+    if raw:
+        return raw_metrics
+
+    helpers.display_helper(raw_metrics)
+    return True
+
+
+def f1(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
+    prec = precision(predictions, ground_truth, raw=True)
+    rec = recall(predictions, ground_truth, raw=True)
+
+    raw_metrics = {}
+
+    for (prec_key, prec_val) in prec.items():
+        if prec_val == 0 and rec[prec_key] == 0:
+            raw_metrics[prec_key] = 0
+        else:
+            raw_metrics[prec_key] = (2 * prec_val * rec[prec_key]) / (
+                prec_val + rec[prec_key]
+            )
+
+    if raw:
+        return raw_metrics
+
+    helpers.display_helper(raw_metrics)
+    return True
+
+
+if __name__ == "__main__":
+    true_positive(np.array(["1", "1", "0"]), np.array(["1", "1", "0"]))
