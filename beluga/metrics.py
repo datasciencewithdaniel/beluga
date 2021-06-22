@@ -177,6 +177,6 @@ def f1(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
 
 
 if __name__ == "__main__":
-    true_positive(np.array(["1", "1", "0"]), np.array(["1", "1", "0"]))
-    true_negative(np.array(["1", "1", "0"]), np.array(["1", "1", "0"]))
-    f1(np.array(["1", "1", "0"]), np.array(["1", "1", "0"]))
+    true_positive(np.array([1, 1, 0]), np.array([1, 1, 0]))
+    true_negative(np.array([1, 1, 0]), np.array([1, 1, 0]))
+    f1(np.array([1, 1, 0]), np.array([1, 1, 0]))

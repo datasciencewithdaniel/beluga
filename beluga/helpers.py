@@ -7,7 +7,7 @@ def display_helper(raw_metrics, header=''):
 
     print("=" * (max_label_len + 9))
     for key, val in raw_metrics.items():
-        key = key.ljust(max_label_len + 2, " ")
+        key = str(key).ljust(max_label_len + 2, " ")
         print("{0} {1:.4f}".format(key, val))
     print("=" * (max_label_len + 9))
 
