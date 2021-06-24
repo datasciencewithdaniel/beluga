@@ -1,6 +1,5 @@
 from typing import Iterable
-import numpy as np
-
+from .helpers import np
 from . import helpers
 
 

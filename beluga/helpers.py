@@ -1,3 +1,5 @@
+import numpy as np
+
 def display_helper(raw_metrics, header=''):
 
     max_label_len = max([len(str(lab)) for lab in raw_metrics.keys()])
