@@ -27,4 +27,7 @@ def error_check(metric_1, metric_2):  # POTENTIALLY REMOVE
 def array_check(array_1, array_2):
     if len(array_1) != len(array_2):
         raise ValueError("Your arrays do not match in length")
-    return True
+
+    if isinstance(array_1, np.ndarray) and isinstance(array_2, np.ndarray):
+        return array_1, array_2
+    return np.array(array_1), np.array(array_2)

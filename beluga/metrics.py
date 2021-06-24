@@ -4,7 +4,7 @@ from . import helpers
 
 
 def true_positive(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
-    helpers.array_check(predictions, ground_truth)
+    predictions, ground_truth = helpers.array_check(predictions, ground_truth)
 
     labels = np.unique(ground_truth)
 
@@ -25,7 +25,7 @@ def true_positive(predictions: Iterable[int], ground_truth: Iterable[int], raw=F
 
 
 def true_negative(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
-    helpers.array_check(predictions, ground_truth)
+    predictions, ground_truth = helpers.array_check(predictions, ground_truth)
 
     labels = np.unique(ground_truth)
 
@@ -46,7 +46,7 @@ def true_negative(predictions: Iterable[int], ground_truth: Iterable[int], raw=F
 
 
 def false_positive(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
-    helpers.array_check(predictions, ground_truth)
+    predictions, ground_truth = helpers.array_check(predictions, ground_truth)
 
     labels = np.unique(ground_truth)
 
@@ -67,7 +67,7 @@ def false_positive(predictions: Iterable[int], ground_truth: Iterable[int], raw=
 
 
 def false_negative(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
-    helpers.array_check(predictions, ground_truth)
+    predictions, ground_truth = helpers.array_check(predictions, ground_truth)
 
     labels = np.unique(ground_truth)
 
@@ -176,6 +176,6 @@ def f1(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
 
 
 if __name__ == "__main__":
-    true_positive(np.array([1, 1, 0]), np.array([1, 1, 0]))
-    true_negative(np.array([1, 1, 0]), np.array([1, 1, 0]))
+    true_positive([1, 1, 0], [1, 1, 0])
+    true_negative([1, 1, 0], np.array([1, 1, 0]))
     f1(np.array([1, 1, 0]), np.array([1, 1, 0]))
