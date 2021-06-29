@@ -1,12 +1,17 @@
-def display_helper(raw_metrics):
+import numpy as np
 
-    max_lab = max([len(lab) for lab in raw_metrics.keys()])
+def display_helper(raw_metrics, header=''):
 
-    print("=" * (max_lab + 9))
+    max_label_len = max([len(str(lab)) for lab in raw_metrics.keys()])
+
+    if header:
+        print(header)
+
+    print("=" * (max_label_len + 9))
     for key, val in raw_metrics.items():
-        key = key.ljust(max_lab + 2, " ")
+        key = str(key).ljust(max_label_len + 2, " ")
         print("{0} {1:.4f}".format(key, val))
-    print("=" * (max_lab + 9))
+    print("=" * (max_label_len + 9))
 
     return True
 
@@ -22,4 +27,7 @@ def error_check(metric_1, metric_2):  # POTENTIALLY REMOVE
 def array_check(array_1, array_2):
     if len(array_1) != len(array_2):
         raise ValueError("Your arrays do not match in length")
-    return True
+
+    if isinstance(array_1, np.ndarray) and isinstance(array_2, np.ndarray):
+        return array_1, array_2
+    return np.array(array_1), np.array(array_2)

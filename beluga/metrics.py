@@ -1,11 +1,10 @@
 from typing import Iterable
-import numpy as np
-
+from .helpers import np
 from . import helpers
 
 
 def true_positive(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
-    helpers.array_check(predictions, ground_truth)
+    predictions, ground_truth = helpers.array_check(predictions, ground_truth)
 
     labels = np.unique(ground_truth)
 
@@ -21,12 +20,12 @@ def true_positive(predictions: Iterable[int], ground_truth: Iterable[int], raw=F
     if raw:
         return raw_metrics
 
-    helpers.display_helper(raw_metrics)
+    helpers.display_helper(raw_metrics, 'True Positive')
     return True
 
 
 def true_negative(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
-    helpers.array_check(predictions, ground_truth)
+    predictions, ground_truth = helpers.array_check(predictions, ground_truth)
 
     labels = np.unique(ground_truth)
 
@@ -42,12 +41,12 @@ def true_negative(predictions: Iterable[int], ground_truth: Iterable[int], raw=F
     if raw:
         return raw_metrics
 
-    helpers.display_helper(raw_metrics)
+    helpers.display_helper(raw_metrics, 'True Negative')
     return True
 
 
 def false_positive(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
-    helpers.array_check(predictions, ground_truth)
+    predictions, ground_truth = helpers.array_check(predictions, ground_truth)
 
     labels = np.unique(ground_truth)
 
@@ -63,12 +62,12 @@ def false_positive(predictions: Iterable[int], ground_truth: Iterable[int], raw=
     if raw:
         return raw_metrics
 
-    helpers.display_helper(raw_metrics)
+    helpers.display_helper(raw_metrics, 'False Positive')
     return True
 
 
 def false_negative(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
-    helpers.array_check(predictions, ground_truth)
+    predictions, ground_truth = helpers.array_check(predictions, ground_truth)
 
     labels = np.unique(ground_truth)
 
@@ -84,7 +83,7 @@ def false_negative(predictions: Iterable[int], ground_truth: Iterable[int], raw=
     if raw:
         return raw_metrics
 
-    helpers.display_helper(raw_metrics)
+    helpers.display_helper(raw_metrics, 'False Negative')
     return True
 
 
@@ -103,7 +102,7 @@ def precision(predictions: Iterable[int], ground_truth: Iterable[int], raw=False
     if raw:
         return raw_metrics
 
-    helpers.display_helper(raw_metrics)
+    helpers.display_helper(raw_metrics, 'Precision')
     return True
 
 
@@ -122,7 +121,7 @@ def recall(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
     if raw:
         return raw_metrics
 
-    helpers.display_helper(raw_metrics)
+    helpers.display_helper(raw_metrics, 'Recall')
     return True
 
 
@@ -132,7 +131,7 @@ def sensitivity(predictions: Iterable[int], ground_truth: Iterable[int], raw=Fal
     if raw:
         return raw_metrics
 
-    helpers.display_helper(raw_metrics)
+    helpers.display_helper(raw_metrics, 'Sensitivity')
     return True
 
 
@@ -151,7 +150,7 @@ def specificity(predictions: Iterable[int], ground_truth: Iterable[int], raw=Fal
     if raw:
         return raw_metrics
 
-    helpers.display_helper(raw_metrics)
+    helpers.display_helper(raw_metrics, 'Specificity')
     return True
 
 
@@ -172,9 +171,11 @@ def f1(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
     if raw:
         return raw_metrics
 
-    helpers.display_helper(raw_metrics)
+    helpers.display_helper(raw_metrics, 'F1 score')
     return True
 
 
 if __name__ == "__main__":
-    true_positive(np.array(["1", "1", "0"]), np.array(["1", "1", "0"]))
+    true_positive([1, 1, 0], [1, 1, 0])
+    true_negative([1, 1, 0], np.array([1, 1, 0]))
+    f1(np.array([1, 1, 0]), np.array([1, 1, 0]))
