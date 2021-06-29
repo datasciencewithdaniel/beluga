@@ -1,5 +1,8 @@
 # beluga
 
+[![](https://img.shields.io/github/license/datasciencewithdaniel/beluga?style=plastic)](https://github.com/datasciencewithdaniel/beluga/blob/main/LICENSE)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=plastic)](https://github.com/psf/black)
+
 A Python library to help make your Machine Learning easier
 
 We were inspired by [this](https://www.youtube.com/watch?v=0qRgWubbPxQ) friendly Beluga whale to help others in their Machine Learning projects.
