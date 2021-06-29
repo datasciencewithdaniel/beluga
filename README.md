@@ -1,7 +1,11 @@
 # beluga
 
-[![](https://img.shields.io/github/license/datasciencewithdaniel/beluga?style=plastic)](https://github.com/datasciencewithdaniel/beluga/blob/main/LICENSE)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=plastic)](https://github.com/psf/black)
+[![License](https://img.shields.io/github/license/datasciencewithdaniel/beluga?style=plastic)](https://github.com/datasciencewithdaniel/beluga/blob/main/LICENSE)
+[![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg?style=plastic)](https://github.com/psf/black)
+[![Last Commit](https://img.shields.io/github/last-commit/datasciencewithdaniel/beluga?style=plastic)](https://github.com/datasciencewithdaniel/beluga/commits/main)
+[![Contributors](https://img.shields.io/github/contributors/datasciencewithdaniel/beluga?style=plastic)](https://github.com/datasciencewithdaniel/beluga/graphs/contributors)
+[![Size](https://img.shields.io/github/repo-size/datasciencewithdaniel/beluga?style=plastic)]()
+[![Issues](https://img.shields.io/github/issues/datasciencewithdaniel/beluga?style=plastic)](https://github.com/datasciencewithdaniel/beluga/issues)
 
 A Python library to help make your Machine Learning easier
 
