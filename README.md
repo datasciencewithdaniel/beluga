@@ -6,6 +6,7 @@
 [![Contributors](https://img.shields.io/github/contributors/datasciencewithdaniel/beluga?style=plastic)](https://github.com/datasciencewithdaniel/beluga/graphs/contributors)
 [![Size](https://img.shields.io/github/repo-size/datasciencewithdaniel/beluga?style=plastic)]()
 [![Issues](https://img.shields.io/github/issues/datasciencewithdaniel/beluga?style=plastic)](https://github.com/datasciencewithdaniel/beluga/issues)
+[![Discord](https://img.shields.io/discord/851059417562742854?style=plastic)](https://discord.gg/D3KfXbdZgk)
 
 A Python library to help make your Machine Learning easier
 
