@@ -19,5 +19,5 @@ python -m setup pytest
 ```
 Check the coverage of these tests using:
 ```
-pytest --cov=beluga tests/
+pytest --cov=beluga tests/ --cov-report term-missing
 ```
