@@ -260,6 +260,36 @@ def test_f1():
         output = metrics.f1(IN5, IN5, raw=True)
 
 
+def test_accuracy():
+
+    output = metrics.accuracy(IN1, IN1, raw=True)
+
+    assert isinstance(output, dict)
+    assert isinstance(output["1"], float)
+    assert output["1"] == 1.0
+    assert output["0"] == 1.0
+    assert len(output) == len(np.unique(IN1))
+
+    with pytest.raises(KeyError):
+        output["2"] != 0
+
+    output = metrics.accuracy(IN1, IN1)
+
+    assert output is True
+
+    output = metrics.accuracy(IN3, IN3, raw=True)
+
+    assert sum(output.values()) == 1.0
+    assert output["1"] == 1.0
+
+    with pytest.raises(TypeError):
+        output = metrics.accuracy(IN3, raw=True)
+    with pytest.raises(ValueError):
+        output = metrics.accuracy(IN3, IN4)
+    with pytest.raises(TypeError):
+        output = metrics.accuracy(IN5, IN5, raw=True)
+
+
 def test_array_check():
 
     assert isinstance(IN3, list)
@@ -267,3 +297,6 @@ def test_array_check():
     new3, _ = helpers.array_check(IN3, IN3)
 
     assert isinstance(new3, np.ndarray)
+
+    with pytest.raises(ValueError):
+        helpers.array_check(IN4, IN4)
