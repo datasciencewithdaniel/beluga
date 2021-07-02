@@ -1,19 +1,28 @@
 import numpy as np
 from typing import Iterable
 
+from numpy.lib.arraysetops import isin
+
 
 def display_helper(raw_metrics: dict, header: str = "") -> bool:
 
+    if not isinstance(raw_metrics, dict):
+        raise ValueError("Raw metrics is not a dict")
+
     max_label_len = max([len(str(lab)) for lab in raw_metrics.keys()])
 
-    if header:
-        print(header)
+    try:
+        if header:
+            print(header)
 
-    print("=" * (max_label_len + 9))
-    for key, val in raw_metrics.items():
-        key = str(key).ljust(max_label_len + 2, " ")
-        print("{0} {1:.4f}".format(key, val))
-    print("=" * (max_label_len + 9))
+        print("=" * (max_label_len + 9))
+        for key, val in raw_metrics.items():
+            key = str(key).ljust(max_label_len + 2, " ")
+            print("{0} {1:.4f}".format(key, val))
+        print("=" * (max_label_len + 9))
+
+    except Exception:
+        return False
 
     return True
 
@@ -34,5 +43,5 @@ def array_check(array_1: Iterable, array_2: Iterable) -> Iterable[np.ndarray, np
 
     if isinstance(array_1, np.ndarray) and isinstance(array_2, np.ndarray):
         return array_1, array_2
-        
+
     return np.array(array_1), np.array(array_2)
