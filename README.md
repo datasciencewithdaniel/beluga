@@ -112,3 +112,15 @@ beluga.metrics.f1(['Elon Musk', 'Tim Cook', 'robot'], ['Elon Musk', 'Tim Cook', 
     Tim Cook          1.0000
     ========================
 ```
+
+License
+----
+
+GPL-3.0 License
+
+#
+Beluga uses open source packages to work properly:
+
+* [numpy](https://github.com/numpy/numpy) - The fundamental package for scientific computing with Python.
+
+And of course **beluga** itself is open source with a [public repository](https://github.com/datasciencewithdaniel/beluga) on GitHub.
