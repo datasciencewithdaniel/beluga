@@ -210,6 +210,3 @@ def accuracy(
         return raw_metrics
 
     return helpers.display_helper(raw_metrics, "Accuracy")
-
-if __name__ == "__main__":
-    true_positive([1, 1, 1, 0, 0], [1, 0, 1, 0, 0])
