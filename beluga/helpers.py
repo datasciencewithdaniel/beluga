@@ -1,7 +1,8 @@
 import numpy as np
+from typing import Iterable
 
 
-def display_helper(raw_metrics, header=""):
+def display_helper(raw_metrics: dict, header: str = "") -> bool:
 
     max_label_len = max([len(str(lab)) for lab in raw_metrics.keys()])
 
@@ -17,7 +18,8 @@ def display_helper(raw_metrics, header=""):
     return True
 
 
-def array_check(array_1, array_2):
+def array_check(array_1: Iterable, array_2: Iterable) -> Iterable[np.ndarray, np.ndarray]:
+
     try:
         iter(array_1)
         iter(array_2)
@@ -32,4 +34,5 @@ def array_check(array_1, array_2):
 
     if isinstance(array_1, np.ndarray) and isinstance(array_2, np.ndarray):
         return array_1, array_2
+        
     return np.array(array_1), np.array(array_2)
