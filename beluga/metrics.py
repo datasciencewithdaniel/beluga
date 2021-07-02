@@ -173,3 +173,22 @@ def f1(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
 
     helpers.display_helper(raw_metrics, "F1 score")
     return True
+
+ 
+def accuracy(predictions: Iterable[int], ground_truth: Iterable[int], raw=False):
+    tp = true_positive(predictions, ground_truth, raw=True)
+    tn = true_negative(predictions, ground_truth, raw=True)
+    fp = false_positive(predictions, ground_truth, raw=True)
+    fn = false_negative(predictions, ground_truth, raw=True)
+
+    raw_metrics = {}
+
+    for (tp_key, tp_val) in tp.items():
+        raw_metrics[tp_key] = \
+            (tp_val + tn[tp_key]) / (tp_val + fp[tp_key] + fn[tp_key] + tn[tp_key])
+
+    if raw:
+        return raw_metrics
+
+    helpers.display_helper(raw_metrics, "Accuracy")
+    return True
