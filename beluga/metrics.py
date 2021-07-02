@@ -1,5 +1,4 @@
-from typing import Iterable
-from .helpers import np
+from .helpers import np, Iterable
 from . import helpers
 
 
@@ -211,3 +210,6 @@ def accuracy(
         return raw_metrics
 
     return helpers.display_helper(raw_metrics, "Accuracy")
+
+if __name__ == "__main__":
+    true_positive([1, 1, 1, 0, 0], [1, 0, 1, 0, 0])

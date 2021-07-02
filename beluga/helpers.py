@@ -1,7 +1,5 @@
 import numpy as np
-from typing import Iterable
-
-from numpy.lib.arraysetops import isin
+from typing import Tuple, Iterable
 
 
 def display_helper(raw_metrics: dict, header: str = "") -> bool:
@@ -27,7 +25,7 @@ def display_helper(raw_metrics: dict, header: str = "") -> bool:
     return True
 
 
-def array_check(array_1: Iterable, array_2: Iterable) -> Iterable[np.ndarray, np.ndarray]:
+def array_check(array_1: Iterable, array_2: Iterable) -> Tuple[np.ndarray, np.ndarray]:
 
     try:
         iter(array_1)
