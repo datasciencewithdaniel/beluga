@@ -29,3 +29,98 @@ Check the coverage of these tests using:
 ```
 pytest --cov=beluga tests/ --cov-report term-missing
 ```
+
+# Beluga - make predictions, get metrics
+
+Beluga library provides easy access to all metrics you need in your multiclass classification tasks.
+
+## Overview
+
+  - Get various metrics on your predictions
+  - ...
+  - ...
+
+## Installation [TODO]
+
+To install this library you can use Pypi via pip 
+
+```
+pip install beluga
+```
+
+## Usage
+
+Import beluga into your project
+
+```py
+import beluga
+```
+
+
+## Documentation
+
+Methods in metrics have following parameters:
+
+* **predictions** - (list) predictions from your model
+* **ground_truth** - (list) true values
+* **raw** - (bool). *Optional*. Use to get metrics in dictionary instead of printing. Default: *False*.
+
+### Methods list
+
+**true_positive**: description
+
+**true_negative**: ...
+
+**false_positive**: ...
+
+**false_negative**: ...
+
+**precision**: ...
+
+**recall**: ...
+
+**sensitivity**: ...
+
+**specificity**: ...
+
+**f1**: ...
+
+**accuracy**: ...
+
+### Examples
+
+```py
+beluga.metrics.true_positive([1, 1, 1, 0, 0], [1, 0, 1, 0, 0])
+>>> True Positive
+    ==========
+    0   2.0000
+    1   2.0000
+    ==========
+
+beluga.metrics.recall(['cat', 'dog', 'dog'], ['cat', 'dog', 'dog'])
+>>> Recall
+    ============
+    cat   1.0000
+    dog   1.0000
+    ============
+
+beluga.metrics.f1(['Elon Musk', 'Tim Cook', 'robot'], ['Elon Musk', 'Tim Cook', 'Mark Zuckerberg'])
+>>> F1 score
+    ========================
+    Elon Musk         1.0000
+    Mark Zuckerberg   0.0000
+    Tim Cook          1.0000
+    ========================
+```
+
+License
+----
+
+GPL-3.0 License
+
+#
+Beluga uses open source packages to work properly:
+
+* [numpy](https://github.com/numpy/numpy) - The fundamental package for scientific computing with Python.
+
+And of course **beluga** itself is open source with a [public repository](https://github.com/datasciencewithdaniel/beluga) on GitHub.
