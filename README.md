@@ -23,7 +23,7 @@ Check out the [Issues](https://github.com/datasciencewithdaniel/beluga/issues) f
 To install this library you can use Pypi via pip
 
 ```
-pip install beluga
+pip install beluga-ml
 ```
 
 ## Usage
@@ -31,7 +31,7 @@ pip install beluga
 Import beluga into your project
 
 ```py
-import beluga
+import beluga-ml
 ```
 
 
