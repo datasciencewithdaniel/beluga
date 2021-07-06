@@ -6,6 +6,18 @@ from . import helpers
 def true_positive(
     predictions: Collection, ground_truth: Collection, raw: bool = False
 ) -> Union[dict, bool]:
+    """Number of correctly classified labels of the positive class
+
+    Args:
+        predictions (Collection): Predicted classes from the model
+        ground_truth (Collection): Correct classes from the data
+        raw (bool, optional): If the raw metrics are to be returned.
+            Defaults to False.
+
+    Returns:
+        Union[dict, bool]: The raw metrics if specified,
+            otherwise the output of the printing function
+    """
 
     predictions, ground_truth = helpers.array_check(predictions, ground_truth)
 
@@ -29,6 +41,18 @@ def true_positive(
 def true_negative(
     predictions: Collection, ground_truth: Collection, raw: bool = False
 ) -> Union[dict, bool]:
+    """Number of correctly classified labels of the negative class
+
+    Args:
+        predictions (Collection): Predicted classes from the model
+        ground_truth (Collection): Correct classes from the data
+        raw (bool, optional): If the raw metrics are to be returned.
+            Defaults to False.
+
+    Returns:
+        Union[dict, bool]: The raw metrics if specified,
+            otherwise the output of the printing function
+    """
 
     predictions, ground_truth = helpers.array_check(predictions, ground_truth)
 
@@ -52,6 +76,18 @@ def true_negative(
 def false_positive(
     predictions: Collection, ground_truth: Collection, raw: bool = False
 ) -> Union[dict, bool]:
+    """Number of incorrectly classified labels of the postive class
+
+    Args:
+        predictions (Collection): Predicted classes from the model
+        ground_truth (Collection): Correct classes from the data
+        raw (bool, optional): If the raw metrics are to be returned.
+            Defaults to False.
+
+    Returns:
+        Union[dict, bool]: The raw metrics if specified,
+            otherwise the output of the printing function
+    """
 
     predictions, ground_truth = helpers.array_check(predictions, ground_truth)
 
@@ -75,6 +111,18 @@ def false_positive(
 def false_negative(
     predictions: Collection, ground_truth: Collection, raw: bool = False
 ) -> Union[dict, bool]:
+    """Number of incorrectly classified labels of the negative class
+
+    Args:
+        predictions (Collection): Predicted classes from the model
+        ground_truth (Collection): Correct classes from the data
+        raw (bool, optional): If the raw metrics are to be returned.
+            Defaults to False.
+
+    Returns:
+        Union[dict, bool]: The raw metrics if specified,
+            otherwise the output of the printing function
+    """
 
     predictions, ground_truth = helpers.array_check(predictions, ground_truth)
 
@@ -98,6 +146,18 @@ def false_negative(
 def precision(
     predictions: Collection, ground_truth: Collection, raw: bool = False
 ) -> Union[dict, bool]:
+    """Percentage of positive class predictions that are correct
+
+    Args:
+        predictions (Collection): Predicted classes from the model
+        ground_truth (Collection): Correct classes from the data
+        raw (bool, optional): If the raw metrics are to be returned.
+            Defaults to False.
+
+    Returns:
+        Union[dict, bool]: The raw metrics if specified,
+            otherwise the output of the printing function
+    """
 
     tp = true_positive(predictions, ground_truth, raw=True)
     fp = false_positive(predictions, ground_truth, raw=True)
@@ -121,6 +181,18 @@ def precision(
 def recall(
     predictions: Collection, ground_truth: Collection, raw: bool = False
 ) -> Union[dict, bool]:
+    """Percentage of correctly classified labels from the positive class
+
+    Args:
+        predictions (Collection): Predicted classes from the model
+        ground_truth (Collection): Correct classes from the data
+        raw (bool, optional): If the raw metrics are to be returned.
+            Defaults to False.
+
+    Returns:
+        Union[dict, bool]: The raw metrics if specified,
+            otherwise the output of the printing function
+    """
 
     tp = true_positive(predictions, ground_truth, raw=True)
     fn = false_negative(predictions, ground_truth, raw=True)
@@ -144,6 +216,18 @@ def recall(
 def sensitivity(
     predictions: Collection, ground_truth: Collection, raw: bool = False
 ) -> Union[dict, bool]:
+    """Percentage of correctly classified labels from the positive class
+
+    Args:
+        predictions (Collection): Predicted classes from the model
+        ground_truth (Collection): Correct classes from the data
+        raw (bool, optional): If the raw metrics are to be returned.
+            Defaults to False.
+
+    Returns:
+        Union[dict, bool]: The raw metrics if specified,
+            otherwise the output of the printing function
+    """
 
     raw_metrics = recall(predictions, ground_truth, raw=True)
 
@@ -159,6 +243,18 @@ def sensitivity(
 def specificity(
     predictions: Collection, ground_truth: Collection, raw: bool = False
 ) -> Union[dict, bool]:
+    """Percentage of correctly classified labels from the negative class
+
+    Args:
+        predictions (Collection): Predicted classes from the model
+        ground_truth (Collection): Correct classes from the data
+        raw (bool, optional): If the raw metrics are to be returned.
+            Defaults to False.
+
+    Returns:
+        Union[dict, bool]: The raw metrics if specified,
+            otherwise the output of the printing function
+    """
 
     tn = true_negative(predictions, ground_truth, raw=True)
     fp = false_positive(predictions, ground_truth, raw=True)
@@ -182,6 +278,18 @@ def specificity(
 def f1(
     predictions: Collection, ground_truth: Collection, raw: bool = False
 ) -> Union[dict, bool]:
+    """The harmomic mean of precision and recall
+
+    Args:
+        predictions (Collection): Predicted classes from the model
+        ground_truth (Collection): Correct classes from the data
+        raw (bool, optional): If the raw metrics are to be returned.
+            Defaults to False.
+
+    Returns:
+        Union[dict, bool]: The raw metrics if specified,
+            otherwise the output of the printing function
+    """
 
     prec = precision(predictions, ground_truth, raw=True)
     rec = recall(predictions, ground_truth, raw=True)
@@ -207,6 +315,18 @@ def f1(
 def accuracy(
     predictions: Collection, ground_truth: Collection, raw: bool = False
 ) -> Union[dict, bool]:
+    """Percentage of correctly classified labels
+
+    Args:
+        predictions (Collection): Predicted classes from the model
+        ground_truth (Collection): Correct classes from the data
+        raw (bool, optional): If the raw metrics are to be returned.
+            Defaults to False.
+
+    Returns:
+        Union[dict, bool]: The raw metrics if specified,
+            otherwise the output of the printing function
+    """
 
     tp = true_positive(predictions, ground_truth, raw=True)
     tn = true_negative(predictions, ground_truth, raw=True)
