@@ -16,9 +16,9 @@ Check out the [Issues](https://github.com/datasciencewithdaniel/beluga/issues) f
 
   - Get various metrics on your Machine Learning predictions
   - Print your metrics or incorporate them into downstream analysis
-  - Visualise your metrics (Comming Soon)
+  - Visualise your metrics (Coming Soon)
 
-## Installation [In Progress]
+## Installation
 
 To install this library you can use Pypi via pip
 
