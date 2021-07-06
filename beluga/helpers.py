@@ -20,8 +20,11 @@ def display_helper(raw_metrics: dict, header: str = "") -> bool:
         raise ValueError("Your raw metrics is not a dictionary")
 
     max_label_len = max([len(str(lab)) for lab in raw_metrics.keys()])
+    if max_label_len < 5:
+        max_label_len = 5
 
     try:
+        print()
         if header:
             print(header)
 
@@ -30,6 +33,7 @@ def display_helper(raw_metrics: dict, header: str = "") -> bool:
             key = str(key).ljust(max_label_len + 2, " ")
             print("{0} {1:.4f}".format(key, val))
         print("=" * (max_label_len + 9))
+        print()
 
     except Exception:
         return False
