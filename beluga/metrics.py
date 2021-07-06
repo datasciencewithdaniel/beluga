@@ -1,4 +1,5 @@
-from .helpers import np, Iterable, Collection, Union
+from typing import Union
+from .helpers import np, Collection
 from . import helpers
 
 
