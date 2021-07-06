@@ -12,6 +12,8 @@ Beluga is a Python library that provides easy access to all of the metrics you n
 
 Check out the [Issues](https://github.com/datasciencewithdaniel/beluga/issues) for future functionality and progress such as support for regression tasks and metric visualisations.
 
+The official PyPi release can be found [here](https://pypi.org/project/beluga-ml/#description).
+
 ## Overview
 
   - Get various metrics on your Machine Learning predictions
