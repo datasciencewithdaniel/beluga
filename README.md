@@ -14,11 +14,11 @@ Check out the [Issues](https://github.com/datasciencewithdaniel/beluga/issues) f
 
 ## Overview
 
-  - Get various metrics on your predictions
-  - ...
-  - ...
+  - Get various metrics on your Machine Learning predictions
+  - Print your metrics or incorporate them into downstream analysis
+  - Visualise your metrics (Comming Soon)
 
-## Installation [TODO]
+## Installation [In Progress]
 
 To install this library you can use Pypi via pip
 
@@ -45,42 +45,42 @@ Methods in metrics have following parameters:
 
 ### Methods list:
 
-**true_positive**: description
+**true_positive**: Number of correctly classified labels of the positive class
 
-**true_negative**: ...
+**true_negative**: Number of correctly classified labels of the negative class
 
-**false_positive**: ...
+**false_positive**: Number of incorrectly classified labels of the postive class
 
-**false_negative**: ...
+**false_negative**: Number of incorrectly classified labels of the negative class
 
-**precision**: ...
+**precision**: Percentage of positive class predictions that are correct
 
-**recall**: ...
+**recall**: Percentage of correctly classified labels from the positive class
 
-**sensitivity**: ...
+**sensitivity**: (see recall)
 
-**specificity**: ...
+**specificity**: Percentage of correctly classified labels from the negative class
 
-**f1**: ...
+**f1**: The harmomic mean of precision and recall
 
-**accuracy**: ...
+**accuracy**: Percentage of correctly classified labels
 
 ### Examples
 
-```py
+```
 beluga.metrics.true_positive([1, 1, 1, 0, 0], [1, 0, 1, 0, 0])
 >>> True Positive
-    ==========
-    0   2.0000
-    1   2.0000
-    ==========
+    ==============
+    0       2.0000
+    1       2.0000
+    ==============
 
 beluga.metrics.recall(['cat', 'dog', 'dog'], ['cat', 'dog', 'dog'])
 >>> Recall
-    ============
-    cat   1.0000
-    dog   1.0000
-    ============
+    ==============
+    cat     1.0000
+    dog     1.0000
+    ==============
 
 beluga.metrics.f1(['Elon Musk', 'Tim Cook', 'robot'], ['Elon Musk', 'Tim Cook', 'Mark Zuckerberg'])
 >>> F1 score
