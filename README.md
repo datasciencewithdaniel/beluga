@@ -1,4 +1,4 @@
-# beluga
+# Beluga - make predictions, get metrics
 
 [![License](https://img.shields.io/github/license/datasciencewithdaniel/beluga?style=plastic)](https://github.com/datasciencewithdaniel/beluga/blob/main/LICENSE)
 [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg?style=plastic)](https://github.com/psf/black)
@@ -8,31 +8,9 @@
 [![Issues](https://img.shields.io/github/issues/datasciencewithdaniel/beluga?style=plastic)](https://github.com/datasciencewithdaniel/beluga/issues)
 [![Discord](https://img.shields.io/discord/851059417562742854?style=plastic)](https://discord.gg/D3KfXbdZgk)
 
-A Python library to help make your Machine Learning easier
+Beluga is a Python library that provides easy access to all of the metrics you need in your multiclass classification tasks. We were inspired by [this](https://www.youtube.com/watch?v=0qRgWubbPxQ) friendly Beluga whale to help others in their Machine Learning projects.
 
-We were inspired by [this](https://www.youtube.com/watch?v=0qRgWubbPxQ) friendly Beluga whale to help others in their Machine Learning projects.
-
-Following this [guide](https://medium.com/analytics-vidhya/how-to-create-a-python-library-7d5aea80cc3f)
-
-## Running Code
-Run the code from the home direcotry for any development as follows:
-```
-python -m beluga.metrics
-```
-python -m beluga.metrics
-## Tests
-Run the tests from the library home directory with the following:
-```
-python -m setup pytest
-```
-Check the coverage of these tests using:
-```
-pytest --cov=beluga tests/ --cov-report term-missing
-```
-
-# Beluga - make predictions, get metrics
-
-Beluga library provides easy access to all metrics you need in your multiclass classification tasks.
+Check out the [Issues](https://github.com/datasciencewithdaniel/beluga/issues) for future functionality and progress such as support for regression tasks and metric visualisations.
 
 ## Overview
 
@@ -42,7 +20,7 @@ Beluga library provides easy access to all metrics you need in your multiclass c
 
 ## Installation [TODO]
 
-To install this library you can use Pypi via pip 
+To install this library you can use Pypi via pip
 
 ```
 pip install beluga
@@ -61,11 +39,11 @@ import beluga
 
 Methods in metrics have following parameters:
 
-* **predictions** - (list) predictions from your model
-* **ground_truth** - (list) true values
-* **raw** - (bool). *Optional*. Use to get metrics in dictionary instead of printing. Default: *False*.
+* **predictions** - (Iterable) predictions output from your model
+* **ground_truth** - (Iterable) ground truth values to compare against
+* **raw** - (bool). *Optional*. Use to get metrics in a dictionary instead of printing. Default: *False*.
 
-### Methods list
+### Methods list:
 
 **true_positive**: description
 
@@ -113,8 +91,23 @@ beluga.metrics.f1(['Elon Musk', 'Tim Cook', 'robot'], ['Elon Musk', 'Tim Cook', 
     ========================
 ```
 
-License
-----
+## Running Code
+Run the code from the home direcotry for any development as follows:
+```
+python -m beluga.metrics
+```
+This should return nothing as all development tests have been removed.
+## Tests
+Run the tests from the library home directory with the following:
+```
+python -m setup pytest
+```
+Check the coverage of these tests using:
+```
+pytest --cov=beluga tests/ --cov-report term-missing
+```
+
+## License
 
 GPL-3.0 License
 
