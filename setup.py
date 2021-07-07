@@ -12,7 +12,7 @@ setup(
     long_description_content_type="text/markdown",
     author="Data Science with Daniel",
     url="https://github.com/datasciencewithdaniel/beluga",
-    license="MIT",
+    license="GPL-3.0",
     install_requires=["numpy"],
     setup_requires=["pytest-runner", "pytest-cov"],
     tests_require=["pytest"],
