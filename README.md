@@ -33,7 +33,7 @@ pip install beluga-ml
 Import beluga into your project
 
 ```py
-import beluga-ml
+import beluga
 ```
 
 
