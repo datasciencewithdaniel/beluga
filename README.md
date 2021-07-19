@@ -25,7 +25,7 @@ The official PyPi release can be found [here](https://pypi.org/project/beluga-ml
 To install this library you can use Pypi via pip
 
 ```
-pip install beluga-ml
+pip install beluga_ml
 ```
 
 ## Usage
