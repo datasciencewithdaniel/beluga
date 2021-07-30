@@ -1,5 +1,4 @@
-from typing import Union
-from .helpers import np, Collection
+from .helpers import np, Collection, Union
 from . import helpers
 
 
@@ -351,3 +350,56 @@ def accuracy(
         return raw_metrics
 
     return helpers.display_helper(raw_metrics, "Accuracy")
+
+
+def model_accuracy(
+    predictions: Collection, ground_truth: Collection, raw: bool = False
+) -> Union[dict, bool]:
+    """Percentage of correctly classified labels for the total model
+
+    Args:
+        predictions (Collection): Predicted classes from the model
+        ground_truth (Collection): Correct classes from the data
+        raw (bool, optional): If the raw metrics are to be returned.
+            Defaults to False.
+
+    Returns:
+        Union[dict, bool]: The raw metrics if specified,
+            otherwise the output of the printing function
+    """
+
+    predictions, ground_truth = helpers.array_check(predictions, ground_truth)
+
+    acc = {"Total": sum(np.equal(predictions, ground_truth)) / len(ground_truth)}
+
+    if raw:
+        return acc
+
+    return helpers.display_helper(acc, "Model Accuracy")
+
+
+def summary(predictions: Collection, ground_truth: Collection) -> bool:
+    """Prints a summary of the given metrics
+
+    Args:
+        predictions (Collection): Predicted classes from the model
+        ground_truth (Collection): Correct classes from the data
+
+    Returns:
+        bool: True if the print succeeds, False otherwise
+    """
+
+    summary_data = {
+        "Accuracy": accuracy(predictions, ground_truth, raw=True),
+        "Precision": precision(predictions, ground_truth, raw=True),
+        "Recall": recall(predictions, ground_truth, raw=True),
+        "F1": f1(predictions, ground_truth, raw=True),
+    }
+    total_acc = model_accuracy(predictions, ground_truth, raw=True)
+
+    return helpers.summary_display(summary_data, total_acc)
+
+
+# if __name__ == "__main__":
+#     summary([1, 1, 1, 0, 0, 2, 2, 3, 2, 1, 0, 1, 3, 1, 1, 1, 1],
+#             [1, 0, 1, 0, 0, 2, 2, 2, 3, 1, 1, 1, 3, 1, 1, 2, 3])
