@@ -408,12 +408,3 @@ def summary(
     total_acc = model_accuracy(predictions, ground_truth, raw=True)
 
     return helpers.summary_display(summary_data, total_acc)
-
-
-if __name__ == "__main__":
-    out = true_positive(
-        [1, 1, 1, 0, 0, 2, 2, 3, 2, 1, 0, 1, 3, 1, 1, 1, 1],
-        [1, 0, 1, 0, 0, 2, 2, 2, 3, 1, 1, 1, 3, 1, 1, 2, 3],
-        raw=True,
-    )
-    print(out)
