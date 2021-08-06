@@ -8,6 +8,7 @@ IN2 = np.array(["4", "5", "6"])
 IN3: list = ["1"]
 IN4: list = []
 IN5: int = 1
+IN6: dict = {0: 2, 1: 3}
 
 
 def test_true_positive():
@@ -288,6 +289,44 @@ def test_accuracy():
         output = metrics.accuracy(IN3, IN4)
     with pytest.raises(TypeError):
         output = metrics.accuracy(IN5, IN5, raw=True)
+
+
+def test_model_accuracy():
+
+    output = metrics.model_accuracy(IN1, IN1, raw=True)
+
+    assert isinstance(output, dict)
+    assert isinstance(output["Total"], float)
+    assert output["Total"] == 1.0
+    assert len(output) == 1
+
+    with pytest.raises(KeyError):
+        output["2"] != 0
+
+    output = metrics.model_accuracy(IN1, IN1)
+
+    assert output is True
+
+    output = metrics.model_accuracy(IN3, IN3, raw=True)
+
+    assert sum(output.values()) == 1.0
+    assert output["Total"] == 1.0
+
+    with pytest.raises(TypeError):
+        output = metrics.model_accuracy(IN3, raw=True)
+    with pytest.raises(ValueError):
+        output = metrics.model_accuracy(IN3, IN4)
+    with pytest.raises(TypeError):
+        output = metrics.model_accuracy(IN5, IN5, raw=True)
+
+
+def test_summary():
+
+    output = metrics.summary(IN1, IN1)
+    assert output is True
+
+    output = metrics.summary(IN1, IN1, conditions=True)
+    assert output is True
 
 
 def test_array_check():

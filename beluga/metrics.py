@@ -1,5 +1,4 @@
-from typing import Union
-from .helpers import np, Collection
+from .helpers import np, Collection, Union
 from . import helpers
 
 
@@ -235,9 +234,9 @@ def sensitivity(
         return raw_metrics
 
     if isinstance(raw_metrics, dict):
-        out = helpers.display_helper(raw_metrics, "Sensitivity")
+        output = helpers.display_helper(raw_metrics, "Sensitivity")
 
-    return out
+    return output
 
 
 def specificity(
@@ -351,3 +350,61 @@ def accuracy(
         return raw_metrics
 
     return helpers.display_helper(raw_metrics, "Accuracy")
+
+
+def model_accuracy(
+    predictions: Collection, ground_truth: Collection, raw: bool = False
+) -> Union[dict, bool]:
+    """Percentage of correctly classified labels for the total model
+
+    Args:
+        predictions (Collection): Predicted classes from the model
+        ground_truth (Collection): Correct classes from the data
+        raw (bool, optional): If the raw metrics are to be returned.
+            Defaults to False.
+
+    Returns:
+        Union[dict, bool]: The raw metrics if specified,
+            otherwise the output of the printing function
+    """
+
+    predictions, ground_truth = helpers.array_check(predictions, ground_truth)
+
+    acc: dict = {"Total": np.sum(predictions == ground_truth) / len(ground_truth)}
+
+    if raw:
+        return acc
+
+    return helpers.display_helper(acc, "Model Accuracy")
+
+
+def summary(
+    predictions: Collection, ground_truth: Collection, conditions: bool = False
+) -> bool:
+    """Prints a summary of the given metrics
+
+    Args:
+        predictions (Collection): Predicted classes from the model
+        ground_truth (Collection): Correct classes from the data
+        conditions (bool, optional): If the Recall and F1 are to be displayed,
+            or the Sensitivity and Specificity. Defaults to False.
+
+    Returns:
+        bool: True if the print succeeds, False otherwise
+    """
+
+    summary_data = {
+        "Accuracy": accuracy(predictions, ground_truth, raw=True),
+        "Precision": precision(predictions, ground_truth, raw=True),
+    }
+
+    if conditions:
+        summary_data["Sensitivity"] = sensitivity(predictions, ground_truth, raw=True)
+        summary_data["Specificity"] = specificity(predictions, ground_truth, raw=True)
+    else:
+        summary_data["Recall"] = recall(predictions, ground_truth, raw=True)
+        summary_data["F1"] = f1(predictions, ground_truth, raw=True)
+
+    total_acc = model_accuracy(predictions, ground_truth, raw=True)
+
+    return helpers.summary_display(summary_data, total_acc)

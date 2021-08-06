@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setup(
     name="beluga-ml",
     packages=find_packages(include=["beluga"]),
-    version="1.0.1",
+    version="1.1.0",
     description="A Python library to help make your Machine Learning easier",
     long_description=long_description,
     long_description_content_type="text/markdown",
