@@ -58,7 +58,7 @@ def summary_display(summary_data: dict, total_acc: Union[dict, bool]) -> bool:
 
     labels = list([i.keys() for i in summary_data.values()][0])
     max_label_len = max([len(str(labe)) for labe in labels] + [5])
-    max_len = max_label_len + 52
+    max_len = max_label_len + 60
 
     headers = list(summary_data.keys())
     data: dict = {}
@@ -78,7 +78,7 @@ def summary_display(summary_data: dict, total_acc: Union[dict, bool]) -> bool:
             (
                 "| {0:^"
                 + str(max_label_len)
-                + "}  {1:^10}  {2:^10}  {3:^10}  {4:^10} |"
+                + "}  {1:^12}  {2:^12}  {3:^12}  {4:^12} |"
             ).format("Label", headers[0], headers[1], headers[2], headers[3])
         )
         for lab, dat in data.items():
@@ -86,7 +86,7 @@ def summary_display(summary_data: dict, total_acc: Union[dict, bool]) -> bool:
                 (
                     "| {0:^"
                     + str(max_label_len)
-                    + "}  {1:^10.4f}  {2:^10.4f}  {3:^10.4f}  {4:^10.4f} |"
+                    + "}  {1:^12.4f}  {2:^12.4f}  {3:^12.4f}  {4:^12.4f} |"
                 ).format(lab, dat[0], dat[1], dat[2], dat[3])
             )
         print("-" * (max_len))
